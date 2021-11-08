@@ -1,7 +1,9 @@
 from function import function
+import data
 
 if __name__ == "__main__":
     func_obj = function()
+    data_obj = data.Data()
     pdf = func_obj.init_pdf()
 
     # pdf = init_pdf() # automatic add_page
@@ -31,10 +33,11 @@ if __name__ == "__main__":
     pdf.write(txt='Timezone : ' + 'time_zone_value') # Target의 OS Timezone
     pdf.ln(15)
 
-    pdf.write(txt='OS : ' + 'OS') # Target Device의 OS
+    os, model_id = data_obj.parsing_buildprop('build.prop')
+    pdf.write(txt='OS : ' + os) # Target Device의 OS
     pdf.ln(15)
 
-    pdf.write(txt='기종 번호 : ' + 'device_type') # Target Device의 Model 식별 번호
+    pdf.write(txt='기종 및 빌드번호 : ' + model_id) # Target Device의 Model 식별 번호
     pdf.ln(15)
 
     # 보고서 첫 페이지 내용 끝 #

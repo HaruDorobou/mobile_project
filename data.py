@@ -24,3 +24,25 @@ class Data:
 
     def parsing_text(self, text):
         pass
+
+    def parsing_buildprop(self, file):
+        f = open(file, 'r', encoding='utf-8')
+
+        fs = f.readlines()
+
+        for line in fs:
+            line = line[:-1].split('=', 2)
+            if line[0] == 'net.bt.name':
+                s1 = line[1]
+            if line[0] == 'ro.build.version.release':
+                s2 = line[1]
+            if line[0] == 'ro.build.product':
+                s3 = line[1]
+            if line[0] == 'ro.system.build.id':
+                s4 = line[1]
+
+        os = s1 + s2
+        model = s3 + ' ' + s4
+        return os, model
+
+
