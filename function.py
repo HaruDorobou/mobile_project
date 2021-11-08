@@ -2,7 +2,7 @@ from fpdf import FPDF
 import datetime
 
 
-class function:
+class pdf_function:
     def init_pdf(self):
         pdf = FPDF(format='A4')
         pdf.add_page()
@@ -33,6 +33,26 @@ class function:
         organ = input()
         pdf.set_font('NanumGothic', size=18)
         pdf.write(txt='분석기관 : ' + organ)
+
+    def set_timezone(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        timezone = 'tz'
+        pdf.write(txt='Timezone : ' + timezone)
+
+    def set_modelname(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        modelname = 'model name'
+        pdf.write(txt='기기명 : ' + modelname)
+
+    def set_buildID(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        buildID = 'id'
+        pdf.write(txt='Build ID : ' + buildID)
+
+    def set_os(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        os = 'os'
+        pdf.write(txt='OS : ' + os)
 
     def make_table(self, pdf, data):
         line_height = pdf.font_size * 2.5

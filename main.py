@@ -1,7 +1,7 @@
-from function import function
+from function import pdf_function
 
 if __name__ == "__main__":
-    func_obj = function()
+    func_obj = pdf_function()
     pdf = func_obj.init_pdf()
 
     # pdf = init_pdf() # automatic add_page
@@ -9,8 +9,6 @@ if __name__ == "__main__":
     # Setting Init Font Set
     pdf.add_font('NanumGothic', fname='NanumGothic.ttf', uni=True)
     pdf.set_font('NanumGothic', size=16)
-
-    pdf.ln(10)
 
     func_obj.set_title(pdf, '디지털 포렌식 분석 보고서')
     pdf.ln(30)
@@ -27,14 +25,13 @@ if __name__ == "__main__":
     func_obj.set_organ(pdf) # 보고서 의뢰 기관
     pdf.ln(15)
 
-    pdf.set_font('NanumGothic', size=18)
-    pdf.write(txt='Timezone : ' + 'time_zone_value') # Target의 OS Timezone
+    func_obj.set_timezone(pdf) # 기기의 Timezone
     pdf.ln(15)
 
-    pdf.write(txt='OS : ' + 'OS') # Target Device의 OS
+    func_obj.set_os(pdf) # 기기의 OS
     pdf.ln(15)
 
-    pdf.write(txt='기종 번호 : ' + 'device_type') # Target Device의 Model 식별 번호
+    func_obj.set_buildID(pdf) # 기기의 추출당시 Build ID
     pdf.ln(15)
 
     # 보고서 첫 페이지 내용 끝 #
