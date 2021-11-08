@@ -1,7 +1,6 @@
 from fpdf import FPDF
 import datetime
 
-
 class pdf_function:
     def init_pdf(self):
         pdf = FPDF(format='A4')
