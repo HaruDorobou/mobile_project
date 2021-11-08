@@ -3,7 +3,7 @@ import data
 
 if __name__ == "__main__":
     func_obj = function()
-    data_obj = data.Data()
+    data_control = data.Data()
     pdf = func_obj.init_pdf()
 
     # pdf = init_pdf() # automatic add_page
@@ -29,11 +29,14 @@ if __name__ == "__main__":
     func_obj.set_organ(pdf) # 보고서 의뢰 기관
     pdf.ln(15)
 
+    time_zone_value = data_control.data_extract_db('./data/calendar.db',
+                                                   'select localTimezone from CalendarMetaData')
+    time_zone_value = time_zone_value[1][0]
     pdf.set_font('NanumGothic', size=18)
-    pdf.write(txt='Timezone : ' + 'time_zone_value') # Target의 OS Timezone
+    pdf.write(txt='Timezone : ' + time_zone_value) # Target의 OS Timezone
     pdf.ln(15)
 
-    os, model_id = data_obj.parsing_buildprop('build.prop')
+    os, model_id = data_control.parsing_buildprop('./data/build.prop')
     pdf.write(txt='OS : ' + os) # Target Device의 OS
     pdf.ln(15)
 

@@ -22,6 +22,30 @@ class Data:
         print(rows)
         return data
 
+    def close_conn(self, conn):
+        conn.close()
+        return
+
+    def data_extract_db(self, db, sql):
+        conn = sqlite3.connect(db)
+        cur = conn.cursor()
+
+        cur.execute(sql)
+        cols = [column[0] for column in cur.description]
+        data = np.array([cols])
+        # print(data)
+
+        rows = cur.fetchall()
+        rows = np.array(rows)
+        # print(rows)
+
+        data = np.append(data, rows, axis=0)
+        print('data_extract_db(' + db + ', ' + sql + ')')
+        print(data)
+
+        conn.close()
+        return data
+
     def parsing_text(self, text):
         pass
 
