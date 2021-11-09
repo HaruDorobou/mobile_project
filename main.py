@@ -110,16 +110,20 @@ if __name__ == "__main__":
     pdf.ln(15)
     
     # 연동 계정
+    pdf.set_font('NanumGothic', size=18)
     pdf.write(txt='연동 계정')
-    pdf.ln(5)
+    pdf.ln(10)
+    pdf.set_font('NanumGothic', size=10)
     sql = 'select _id as id, account_name from accounts'
     data, _ = data_control.data_extract_db('./data/accounts.notifications.db', sql)
     func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
 
     # wifi 연결 이력
+    pdf.set_font('NanumGothic', size=18)
     pdf.write(txt='wifi 연결 이력')
-    pdf.ln(5)
+    pdf.ln(10)
+    pdf.set_font('NanumGothic', size=10)
     data = data_control.parsing_wifi_xml('./data/WifiConfigStore.xml')
     func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
