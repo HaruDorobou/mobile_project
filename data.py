@@ -18,6 +18,7 @@ class Data:
 
         rows = cur.fetchall()
         rows = np.array(rows)
+        record_len = str(len(rows))
         # print(rows)
 
         data = np.append(data, rows, axis=0)
@@ -25,7 +26,7 @@ class Data:
         # print(data)
 
         conn.close()
-        return data
+        return data, record_len
 
     def parsing_buildprop(self, file):
         s1, s2, s3, s4 = '', '', '', ''

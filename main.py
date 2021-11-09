@@ -46,53 +46,82 @@ if __name__ == "__main__":
     pdf.write(txt='분석내용')
     pdf.ln(15)
 
-    pdf.set_font('NanumGothic', size=18)
-    pdf.write(txt='연락처')
-    pdf.ln(15)
+    # Contacts
     sql = 'select raw_contacts._id as id, raw_contacts.display_name as name, \
         phone_lookup.normalized_number as number \
         from raw_contacts inner join phone_lookup on \
         raw_contacts._id = phone_lookup.raw_contact_id \
         order by raw_contacts._id'
-    data = data_control.data_extract_db('./data/contacts2.db', sql)
-    func_obj.make_table(pdf, data=data)  # talbe result
+    data, record_num = data_control.data_extract_db('./data/contacts2.db', sql)
+
+    pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='연락처 합계 : ' + record_num)
+    pdf.ln(10)
+
+    pdf.set_font('NanumGothic', size=10)
+    pdf.write(txt='연락처 목록')
+    pdf.ln(5)
+    func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
 
-    pdf.write(txt='캘린더 이력')
-    pdf.ln(15)
+    # Calendar
     sql = 'select title as event, description as memo, dtstart as date_start, dtend as date_end \
         from Events where calendar_id = 1 order by date_start'
-    data = data_control.data_extract_db('./data/calendar.db', sql)
-    func_obj.make_table(pdf, data=data)  # talbe result
+    data, record_num = data_control.data_extract_db('./data/calendar.db', sql)
+
+    pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='캘린더 이벤트 합계 : ' + record_num)
+    pdf.ln(10)
+
+    pdf.set_font('NanumGothic', size=10)
+    pdf.write(txt='캘린더 이력')
+    pdf.ln(5)
+    func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
 
-    pdf.write(txt='문자메시지 이력')
-    pdf.ln(15)
+    # MMS
     sql = 'select date, address, body as message_body from sms \
         order by date'
-    data = data_control.data_extract_db('./data/mmssms.db', sql)
-    func_obj.make_table(pdf, data=data)  # talbe result
+    data, record_num = data_control.data_extract_db('./data/mmssms.db', sql)
+
+    pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='문자메시지 합계 : ' + record_num)
+    pdf.ln(10)
+
+    pdf.set_font('NanumGothic', size=10)
+    pdf.write(txt='문자메시지 이력')
+    pdf.ln(5)
+    func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
 
-    pdf.write(txt='전화 이력')
-    pdf.ln(15)
-    sql = 'select date, number, name as message_body from calls \
+    # Call Log
+    sql = 'select date, number, name from calls \
         order by date'
-    data = data_control.data_extract_db('./data/calllog.db', sql)
-    func_obj.make_table(pdf, data=data)  # talbe result
-    pdf.ln(15)
+    data, record_num = data_control.data_extract_db('./data/calllog.db', sql)
 
+    pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='전화 이력 합계 : ' + record_num)
+    pdf.ln(10)
+
+    pdf.set_font('NanumGothic', size=10)
+    pdf.write(txt='전화 이력')
+    pdf.ln(5)
+    func_obj.make_table(pdf, data=data)  # table result
+    pdf.ln(15)
+    
+    # 연동 계정
     pdf.write(txt='연동 계정')
-    pdf.ln(15)
+    pdf.ln(5)
     sql = 'select _id as id, account_name from accounts'
-    data = data_control.data_extract_db('./data/accounts.notifications.db', sql)
-    func_obj.make_table(pdf, data=data)  # talbe result
+    data, _ = data_control.data_extract_db('./data/accounts.notifications.db', sql)
+    func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
 
+    # wifi 연결 이력
     pdf.write(txt='wifi 연결 이력')
-    pdf.ln(15)
+    pdf.ln(5)
     data = data_control.parsing_wifi_xml('./data/WifiConfigStore.xml')
-    func_obj.make_table(pdf, data=data)  # talbe result
+    func_obj.make_table(pdf, data=data)  # table result
     pdf.ln(15)
 
     # 분석내용 끝

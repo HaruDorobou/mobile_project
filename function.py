@@ -39,7 +39,7 @@ class function:
 
     def set_timezone(self, pdf):
         pdf.set_font('NanumGothic', size=18)
-        timezone = data_control.data_extract_db('./data/calendar.db',
+        timezone, _ = data_control.data_extract_db('./data/calendar.db',
                                                 'select localTimezone from CalendarMetaData')
         timezone = timezone[1][0]
         pdf.write(txt='Timezone : ' + timezone)
