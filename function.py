@@ -4,7 +4,6 @@ import data
 
 data_control = data.Data()
 
-
 class function:
     def init_pdf(self):
         pdf = FPDF(format='A4')
