@@ -41,16 +41,6 @@ if __name__ == "__main__":
 
     # 보고서 첫 페이지 내용 끝 #
     # 분석내용 시작
-    d_data = (
-        ("col1", "col2", "col3", "col4"),
-        ("2015-01-23", "Caron", "34", "San Juan"),
-        ("2012-05-16", "Ramos", "45", "Orlando"),
-        ("2021-11-03", "Banks", "19", "Los Angeles"),
-        ("2020-12-22", "Cimon", "31", "Saint-Mahturin-sur-Loire"),
-        ("2019-07-30", "Garfunkle", "31", "Saint-Mahturin-sur-Loire"),
-        ("2007-08-19", "Yamato", "31", "Saint-Mahturin-sur-Loire"),
-        ("2006-02-07", "Akagi", "31", "Saint-Mahturin-sur-Loire")
-    ) # example data
 
     pdf.set_font('NanumGothic', size=26)
     pdf.write(txt='분석내용')
@@ -99,7 +89,7 @@ if __name__ == "__main__":
     func_obj.make_table(pdf, data=data)  # talbe result
     pdf.ln(15)
 
-    pdf.write(txt='wifi 연결 내역')
+    pdf.write(txt='wifi 연결 이력')
     pdf.ln(15)
     data = data_control.parsing_wifi_xml('./data/WifiConfigStore.xml')
     func_obj.make_table(pdf, data=data)  # talbe result
