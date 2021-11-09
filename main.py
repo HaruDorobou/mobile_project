@@ -51,32 +51,48 @@ if __name__ == "__main__":
     pdf.write(txt='분석내용')
     pdf.ln(15)
 
+    # Contacts
     pdf.set_font('NanumGothic', size=18)
-    pdf.write(txt='연락처')
-    pdf.set_font('NanumGothic', size=14)
-    pdf.ln(10)
-    func_obj.make_table(pdf, data=d_data) # talbe result
+    pdf.write(txt='연락처 합계 : ' + 'number')
     pdf.ln(15)
 
+    pdf.set_font('NanumGothic', size=14)
+    pdf.write(txt='연락처 목록')
+    pdf.ln(10)
+    func_obj.make_table(pdf, data=d_data) # table result
+    pdf.ln(15)
+
+    # Calendar
     pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='캘린더 이벤트 합계 : ' + 'number')
+    pdf.ln(15)
+
+    pdf.set_font('NanumGothic', size=14)
     pdf.write(txt='캘린더 이력')
     pdf.ln(10)
-    pdf.set_font('NanumGothic', size=14)
-    func_obj.make_table(pdf, data=d_data) # talbe result
+    func_obj.make_table(pdf, data=d_data) # table result
     pdf.ln(15)
 
+    # MMS
     pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='문자메시지 합계 : ' + 'number')
+    pdf.ln(15)
+
+    pdf.set_font('NanumGothic', size=14)
     pdf.write(txt='문자메시지 이력')
     pdf.ln(10)
-    pdf.set_font('NanumGothic', size=14)
-    func_obj.make_table(pdf, data=d_data) # talbe result
+    func_obj.make_table(pdf, data=d_data) # table result
     pdf.ln(15)
 
+    # Call Log
     pdf.set_font('NanumGothic', size=18)
+    pdf.write(txt='문자메시지 합계 : ' + 'number')
+    pdf.ln(15)
+
+    pdf.set_font('NanumGothic', size=14)
     pdf.write(txt='전화 이력')
     pdf.ln(10)
-    pdf.set_font('NanumGothic', size=14)
-    func_obj.make_table(pdf, data=d_data) # talbe result
+    func_obj.make_table(pdf, data=d_data) # table result
     pdf.ln(15)
 
     # 분석내용 끝
