@@ -1,7 +1,11 @@
 from fpdf import FPDF
 import datetime
+import data
 
-class pdf_function:
+data_control = data.Data()
+
+
+class function:
     def init_pdf(self):
         pdf = FPDF(format='A4')
         pdf.add_page()
@@ -35,22 +39,24 @@ class pdf_function:
 
     def set_timezone(self, pdf):
         pdf.set_font('NanumGothic', size=18)
-        timezone = 'tz'
+        timezone, _ = data_control.data_extract_db('./data/calendar.db',
+                                                'select localTimezone from CalendarMetaData')
+        timezone = timezone[1][0]
         pdf.write(txt='Timezone : ' + timezone)
 
     def set_modelname(self, pdf):
         pdf.set_font('NanumGothic', size=18)
-        modelname = 'model name'
-        pdf.write(txt='기기명 : ' + modelname)
+        _, model_name, _ = data_control.parsing_buildprop('./data/build.prop')
+        pdf.write(txt='기기명 : ' + model_name)
 
     def set_buildID(self, pdf):
         pdf.set_font('NanumGothic', size=18)
-        buildID = 'id'
-        pdf.write(txt='Build ID : ' + buildID)
+        _, _, build_id = data_control.parsing_buildprop('./data/build.prop')
+        pdf.write(txt='Build ID : ' + build_id)
 
     def set_os(self, pdf):
         pdf.set_font('NanumGothic', size=18)
-        os = 'os'
+        os, _, _ = data_control.parsing_buildprop('./data/build.prop')
         pdf.write(txt='OS : ' + os)
 
     def make_table(self, pdf, data):
