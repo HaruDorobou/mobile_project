@@ -1,6 +1,7 @@
 import sqlite3
 import numpy as np
 import pandas as pd
+from xml.etree.ElementTree import parse
 
 
 class Data:
@@ -77,4 +78,19 @@ class Data:
             build_id = s4
         return os, model, build_id
 
+    def parsing_wifi_xml(self, file):
+        tree = parse('./data/WifiConfigStore.xml')
+        root = tree.getroot()
+
+        cols = [['Wifi-ID', 'CreationTime']]
+        row = []
+        data = np.array(cols)
+        for string in root.iter('string'):
+            if string.attrib['name'] == 'SSID':
+                row = np.array([string.text[1:-1]])
+            if string.attrib['name'] == 'CreationTime':
+                row = np.append(row, np.array([string.text[5:]]))
+                data = np.append(data, [row], axis=0)
+
+        return data
 
