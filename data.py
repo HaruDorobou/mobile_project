@@ -2,7 +2,6 @@ import sqlite3
 import numpy as np
 import pandas as pd
 
-
 class Data:
 
     # db => 'database_example.db'
@@ -22,5 +21,21 @@ class Data:
         print(rows)
         return data
 
-    def parsing_text(self, text):
+    def parsing_buildprop(self, db):
         pass
+
+    def parsing_contacts(self, db):
+        pass
+
+    def parsing_calllog(self, db):
+        pass
+
+    def parsing_mms(self, db):
+        pass
+
+    def parsing_calendar(self, db):
+        pass
+
+
+
+
