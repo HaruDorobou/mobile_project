@@ -53,18 +53,29 @@ if __name__ == "__main__":
 
     pdf.set_font('NanumGothic', size=18)
     pdf.write(txt='연락처')
+    pdf.set_font('NanumGothic', size=14)
+    pdf.ln(10)
     func_obj.make_table(pdf, data=d_data) # talbe result
     pdf.ln(15)
 
+    pdf.set_font('NanumGothic', size=18)
     pdf.write(txt='캘린더 이력')
+    pdf.ln(10)
+    pdf.set_font('NanumGothic', size=14)
     func_obj.make_table(pdf, data=d_data) # talbe result
     pdf.ln(15)
 
+    pdf.set_font('NanumGothic', size=18)
     pdf.write(txt='문자메시지 이력')
+    pdf.ln(10)
+    pdf.set_font('NanumGothic', size=14)
     func_obj.make_table(pdf, data=d_data) # talbe result
     pdf.ln(15)
 
+    pdf.set_font('NanumGothic', size=18)
     pdf.write(txt='전화 이력')
+    pdf.ln(10)
+    pdf.set_font('NanumGothic', size=14)
     func_obj.make_table(pdf, data=d_data) # talbe result
     pdf.ln(15)
 
