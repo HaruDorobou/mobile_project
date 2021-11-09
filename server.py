@@ -1,6 +1,5 @@
 import socket
 import os
-import time
 
 IP = '127.0.0.1'  # '192.168.219.174'
 PORT = 8000
@@ -17,7 +16,6 @@ def receive_file(conn):
     nowdir = os.getcwd()
     desdir = os.path.join(nowdir, 'data')
     data_transferred = 0
-    # time.sleep(0.1)
     with open(desdir + "\\" + file_name_1, 'wb') as f:  # 현재dir에 filename으로 파일을 받는다
         try:
             data = conn.recv(1024)

@@ -46,12 +46,6 @@ def make_client_socket():
 
 if __name__ == '__main__':
     client_socket = make_client_socket()
-    # data = client_socket.recv(1024)
-    # print(data.decode())
-    # send_file(client_socket, file_name[1])
-    # data = client_socket.recv(1024)
-    # print(data.decode())
-    # send_file(client_socket, file_name[0])
 
     for file in file_name:
         data = client_socket.recv(1024)
@@ -59,4 +53,4 @@ if __name__ == '__main__':
         send_file(client_socket, file)
 
     client_socket.send('send protocol end'.encode())
-    # send_file(client_socket, 'send protocol end'.encode())
+
