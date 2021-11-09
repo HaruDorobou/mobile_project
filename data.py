@@ -50,6 +50,8 @@ class Data:
         pass
 
     def parsing_buildprop(self, file):
+        s1, s2, s3, s4 = '', '', '', ''
+        os, model, build_id = '', '', ''
         f = open(file, 'r', encoding='utf-8')
 
         fs = f.readlines()
@@ -65,8 +67,14 @@ class Data:
             if line[0] == 'ro.system.build.id':
                 s4 = line[1]
 
-        os = s1 + s2
-        model = s3 + ' ' + s4
-        return os, model
+        if not s1 == '':
+            os = s1
+            if not s2 == '':
+                os = os + s2
+        if not s3 == '':
+            model = s3
+        if not s4 == '':
+            build_id = s4
+        return os, model, build_id
 
 

@@ -1,5 +1,8 @@
 from fpdf import FPDF
 import datetime
+import data
+
+data_control = data.Data()
 
 
 class function:
@@ -33,6 +36,28 @@ class function:
         organ = input()
         pdf.set_font('NanumGothic', size=18)
         pdf.write(txt='분석기관 : ' + organ)
+
+    def set_timezone(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        timezone = data_control.data_extract_db('./data/calendar.db',
+                                                'select localTimezone from CalendarMetaData')
+        timezone = timezone[1][0]
+        pdf.write(txt='Timezone : ' + timezone)
+
+    def set_modelname(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        _, model_name, _ = data_control.parsing_buildprop('./data/build.prop')
+        pdf.write(txt='기기명 : ' + model_name)
+
+    def set_buildID(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        _, _, build_id = data_control.parsing_buildprop('./data/build.prop')
+        pdf.write(txt='Build ID : ' + build_id)
+
+    def set_os(self, pdf):
+        pdf.set_font('NanumGothic', size=18)
+        os, _, _ = data_control.parsing_buildprop('./data/build.prop')
+        pdf.write(txt='OS : ' + os)
 
     def make_table(self, pdf, data):
         line_height = pdf.font_size * 2.5
